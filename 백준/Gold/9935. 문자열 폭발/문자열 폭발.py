@@ -1,18 +1,27 @@
 import sys
+# sys.stdin = open('input.txt', 'r')
+input = sys.stdin.readline
 
-a = sys.stdin.readline().rstrip()
-explosion_str = sys.stdin.readline().rstrip()
-stack =[]
+test_str = list(input().rstrip())
+bomb_str = list(input().rstrip())
+bomb_length = len(bomb_str)
+# print(bomb_length)
+stack = []
 
+# print(test_str[-bomb_length:])
 
-for i in range(len(a)):
+for item in test_str:
+    stack.append(item)
 
-    stack.append(a[i])
-
-    if ''.join(stack[-len(explosion_str):]) ==explosion_str:
-        for _ in range(len(explosion_str)):
+    # print(stack[-bomb_length:], bomb_str)
+    if stack[-bomb_length:] == bomb_str:
+        for _ in range(bomb_length):
             stack.pop()
-if not stack:
+            
+
+# print(stack)
+
+if len(stack) == 0:
     print('FRULA')
 else:
     print(''.join(stack))
